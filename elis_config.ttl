@@ -1,0 +1,155 @@
+@prefix : <http://ontologies.sparna.fr/sparnatural-demo-elis#> .
+@prefix ds: <http://data.sparna.fr/ontologies/sparnatural-config-datasources#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix datasources: <http://data.sparna.fr/ontologies/sparnatural-config-datasources#> .
+@base <http://ontologies.sparna.fr/sparnatural-demo-elis#> .
+
+<https://data.acorchero.com/ontologies/sparnatural-config> rdf:type owl:Ontology ;
+                                                            owl:imports <http://data.sparna.fr/ontologies/sparnatural-config-core> ,
+                                                                        <http://data.sparna.fr/ontologies/sparnatural-config-datasources> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#title
+:title rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf <http://data.sparna.fr/ontologies/sparnatural-config-core#SearchProperty> ;
+        rdfs:domain :Specification,
+                                   :Standard,
+                                   :CatalogRecord,
+                                   :Assessment,
+                                   :ApplicationProfile;
+       rdfs:range :Text ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#isMultilingual> "false"^^xsd:boolean ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://purl.org/dc/terms#title>" ;
+       rdfs:label "title"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#title
+:description rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf <http://data.sparna.fr/ontologies/sparnatural-config-core#SearchProperty> ;
+        rdfs:domain :Specification,
+                                   :Standard,
+                                   :CatalogRecord,
+                                   :Assessment,
+                                   :ApplicationProfile;
+       rdfs:range :Text ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#isMultilingual> "false"^^xsd:boolean ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://purl.org/dc/terms#description>" ;
+       rdfs:label "description"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#creator
+:creator rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf <http://data.sparna.fr/ontologies/sparnatural-config-core#AutocompleteProperty> ;
+       rdfs:domain :Specification, :Standard, :ApplicationProfile ;
+       rdfs:range :Text ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#isMultilingual> "false"^^xsd:boolean ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://purl.org/dc/terms#creator>" ;
+       rdfs:label "creator"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#theme
+:theme rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf <http://data.sparna.fr/ontologies/sparnatural-config-core#AutocompleteProperty> ;
+       rdfs:domain :Specification,:Standard, :ApplicationProfile ;
+       rdfs:range :Text ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#isMultilingual> "false"^^xsd:boolean ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://www.w3.org/ns/dcat#theme>" ;
+       rdfs:label "theme"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#relation
+:relation rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf <http://data.sparna.fr/ontologies/sparnatural-config-core#ListProperty> ;
+       rdfs:domain :Specification, :Standard, :ApplicationProfile ;
+       rdfs:range :EiraElement ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#isMultilingual> "false"^^xsd:boolean ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://purl.org/dc/terms#relation>" ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-datasources#datasource> <http://data.sparna.fr/ontologies/sparnatural-config-datasources#list_URI_or_literal_count> ;
+       rdfs:label "relation"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#landingPage
+:landingPage rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf <http://data.sparna.fr/ontologies/sparnatural-config-core#AutocompleteProperty> ;
+       rdfs:domain :Specification,:Standard, :Assessment, :ApplicationProfile ;
+       rdfs:range :Text ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#isMultilingual> "false"^^xsd:boolean ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://www.w3.org/ns/dcat#landingPage>" ;
+       rdfs:label "landingPage"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#primaryTopic
+:primaryTopic rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf <http://data.sparna.fr/ontologies/sparnatural-config-core#ListProperty> ;
+       rdfs:domain :CatalogRecord;
+       rdfs:range :Text ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#isMultilingual> "false"^^xsd:boolean ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://xmlns.com/foaf/0.1/primaryTopic>" ;
+       <http://data.sparna.fr/ontologies/sparnatural-config-datasources#datasource> <http://data.sparna.fr/ontologies/sparnatural-config-datasources#list_URI_or_literal_count> ;
+       rdfs:label "primaryTopic"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#Specification
+:Specification rdf:type owl:Class ;
+         rdfs:subClassOf <http://data.sparna.fr/ontologies/sparnatural-config-core#SparnaturalClass> ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#defaultLabelProperty> :title ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#faIcon> "fa-solid fa-paintbrush" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://data.europa.eu/2sa/cssv#Specification>" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#tooltip> "An specification of the ELIS"@en ;                                                
+         rdfs:label "Specification"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#Text
+:Text rdf:type owl:Class ;
+      rdfs:subClassOf rdfs:Literal ;
+      <http://data.sparna.fr/ontologies/sparnatural-config-core#faIcon> "fa-solid fa-font" ;
+      <http://data.sparna.fr/ontologies/sparnatural-config-core#tooltip> "An attribute, a property that describes the object, like a name or a description. <br/><br/>Use this to select the name of the object."@en ;
+      rdfs:label "Text"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#EiraElement
+:EiraElement rdf:type owl:Class ;
+      rdfs:subClassOf <http://data.sparna.fr/ontologies/sparnatural-config-core#SparnaturalClass> ;
+      <http://data.sparna.fr/ontologies/sparnatural-config-core#faIcon> "fa-solid fa-sitemap" ;
+      <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://www.w3.org/2004/02/skos/core#Concept>" ;
+      <http://data.sparna.fr/ontologies/sparnatural-config-core#tooltip> "An attribute that describe EIRA elements"@en ;
+      rdfs:label "Eira Element"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#Standard
+:Standard rdf:type owl:Class ;
+         rdfs:subClassOf <http://data.sparna.fr/ontologies/sparnatural-config-core#SparnaturalClass> ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#defaultLabelProperty> :title ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#faIcon> "fa-solid fa-gavel" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://data.europa.eu/2sa/cssv#Standard>" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#tooltip> "An standard referent to the EU"@en ;                                                
+         rdfs:label "Standard"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#CatalogRecord
+:CatalogRecord rdf:type owl:Class ;
+         rdfs:subClassOf <http://data.sparna.fr/ontologies/sparnatural-config-core#SparnaturalClass> ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#defaultLabelProperty> :title ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#faIcon> "fa-solid fa-list" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://www.w3.org/ns/dcat#CatalogRecord>" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#tooltip> "A CatalogRecord of the ELIS"@en ;                                                
+         rdfs:label "Catalog Record"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#Assessment
+:Assessment rdf:type owl:Class ;
+         rdfs:subClassOf <http://data.sparna.fr/ontologies/sparnatural-config-core#SparnaturalClass> ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#defaultLabelProperty> :title ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#faIcon> "fa-solid fa-arrows-to-eye" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://data.europa.eu/2sa/cav#Assessment>" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#tooltip> "An Assessment of the ELIS"@en ;                                                
+         rdfs:label "Assessment"@en .
+
+###  http://ontologies.sparna.fr/sparnatural-demo-dbpedia#ApplicationProfile
+:ApplicationProfile rdf:type owl:Class ;
+         rdfs:subClassOf <http://data.sparna.fr/ontologies/sparnatural-config-core#SparnaturalClass> ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#defaultLabelProperty> :title ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#faIcon> "fa-solid fa-address-card" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#sparqlString> "<http://data.europa.eu/2sa/cav#Assessment>" ;
+         <http://data.sparna.fr/ontologies/sparnatural-config-core#tooltip> "An Assessment of the ELIS"@en ;                                                
+         rdfs:label "Application profile"@en .
